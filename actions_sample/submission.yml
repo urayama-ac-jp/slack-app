@@ -1,0 +1,30 @@
+name: Submission CI
+on:
+  push:
+    branches: [main]
+jobs:
+  build-with-upload-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: 'adopt'
+          cache: gradle
+      - name: Build with Gradle
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build --scan --no-daemon
+      - name: Archive test report
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test report
+          path: build/reports/tests/test
+      - name: Report send
+        if: always()
+        run: |
+          curl ${{ secrets.URL }} -X POST -H 'Content-Type: application/json' -d '{"repo":"${{ github.event.repository.name }}", "sha":"${{ github.sha }}", "username":"${{ github.event.head_commit.committer.username }}"}'
+

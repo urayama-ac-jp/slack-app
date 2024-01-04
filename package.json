@@ -1,0 +1,43 @@
+{
+  "name": "aspire",
+  "version": "1.0.0",
+  "repository": "https://github.com/JapanOpenSystems/aspire",
+  "author": "jops",
+  "description": "Bolt getting started app in TypeScript",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "build:watch": "tsc -w -p .",
+    "start": "node dist/app.js",
+    "dev": "nodemon -L -w src -e ts -x \"tsc && node --require dotenv/config --inspect=localhost:9229 --experimental-modules dist/app.js\""
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@octokit/rest": "^18.12.0",
+    "@slack/bolt": "^3.3.0",
+    "@types/debug": "^4.1.8",
+    "body-parser": "^1.19.1",
+    "cheerio": "^1.0.0-rc.10",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.3",
+    "googleapis": "^107.0.0",
+    "ibm-watson": "^8.0.0",
+    "jszip": "^3.8.0",
+    "openai": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jszip": "^3.4.1",
+    "@types/node": "^16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "packageManager": "yarn@1.22.19"
+}
